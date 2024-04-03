@@ -36,37 +36,7 @@
     </div>
 </div>
 <script type="text/javascript" th:src="@{/webjars/alpinejs/dist/cdn.min.js}" defer></script>
-<script>
-
-    function sidebarMenu() {
-        return {
-            show: false,
-            openSidebar() {
-                this.show = true;
-            },
-            closeSidebar() {
-                this.show = false;
-            },
-            isVisible() {
-                return this.show === true;
-            }
-        };
-    }
-
-    function userPopupMenu() {
-        return {
-            show: false,
-            toggleVisibility() {
-                this.show = !this.show;
-            },
-            close() {
-                this.show = false;
-            },
-            isVisible() {
-                return this.show === true;
-            }
-        };
-    }
-</script>
+<script th:src="@{/js/user-popup-menu.js}"></script>
+<script th:src="@{/js/side-bar-menu.js}"></script>
 </body>
 </html>
