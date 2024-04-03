@@ -43,9 +43,9 @@
             </div>
             <div class="mt-5 h-0 flex-1 overflow-y-auto">
                 <nav class="space-y-1 px-2">
-                    <a th:replace="~{fragments/sidebar-buttons :: mobile-button(link='#', title='Dashboard', menuItem='dashboard',icon='dashboard')}"></a>
-                    <a th:replace="~{fragments/sidebar-buttons :: mobile-button(link='#', title='Team', menuItem='team', icon='team')}"></a>
-                    <a th:replace="~{fragments/sidebar-buttons :: mobile-button(link='#', title='Projects', menuItem='projects',icon='projects')}"></a>
+                    <a th:replace="~{fragments/sidebar-buttons :: mobile-button(link=@{/}, title='Dashboard', menuItem='dashboard',icon='dashboard')}"></a>
+                    <a th:replace="~{fragments/sidebar-buttons :: mobile-button(link=@{/team}, title='Team', menuItem='team', icon='team')}"></a>
+                    <a th:replace="~{fragments/sidebar-buttons :: mobile-button(link=@{/projects}, title='Projects', menuItem='projects',icon='projects')}"></a>
                     <a th:replace="~{fragments/sidebar-buttons :: mobile-button(link='#', title='Calendar', menuItem='calendar',icon='calendar')}"></a>
                     <a th:replace="~{fragments/sidebar-buttons :: mobile-button(link='#', title='Documents', menuItem='documents',icon='documents')}"></a>
                     <a th:replace="~{fragments/sidebar-buttons :: mobile-button(link='#', title='Reports', menuItem='reports',icon='reports')}"></a>
@@ -69,9 +69,9 @@
         </div>
         <div class="mt-5 flex flex-grow flex-col">
             <nav class="flex-1 space-y-1 px-2 pb-4">
-                <a th:replace="fragments/sidebar-buttons :: desktop-button(link='#', title='Dashboard', menuItem='dashboard', icon='dashboard')"></a>
-                <a th:replace="fragments/sidebar-buttons :: desktop-button(link='#', title='Team', menuItem='team', icon='team')"></a>
-                <a th:replace="fragments/sidebar-buttons :: desktop-button(link='#', title='Projects', menuItem='projects', icon='projects')"></a>
+                <a th:replace="fragments/sidebar-buttons :: desktop-button(link=@{/}, title='Dashboard', menuItem='dashboard', icon='dashboard')"></a>
+                <a th:replace="fragments/sidebar-buttons :: desktop-button(link=@{/team}, title='Team', menuItem='team', icon='team')"></a>
+                <a th:replace="fragments/sidebar-buttons :: desktop-button(link=@{/projects}, title='Projects', menuItem='projects', icon='projects')"></a>
                 <a th:replace="fragments/sidebar-buttons :: desktop-button(link='#', title='Calendar', menuItem='calendar', icon='calendar')"></a>
                 <a th:replace="fragments/sidebar-buttons :: desktop-button(link='#', title='Documents', menuItem='documents', icon='documents')"></a>
                 <a th:replace="fragments/sidebar-buttons :: desktop-button(link='#', title='Reports', menuItem='reports', icon='reports')"></a>
