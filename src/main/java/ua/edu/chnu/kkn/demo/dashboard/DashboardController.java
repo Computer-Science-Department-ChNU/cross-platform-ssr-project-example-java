@@ -1,4 +1,4 @@
-package edu.ataman.demo.team;
+package ua.edu.chnu.kkn.demo.dashboard;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/team")
-public class TeamController {
+@RequestMapping("/")
+public class DashboardController {
 
     @GetMapping
-    public String team(Model model) {
-        return "team/list";
+    public String projects(Model model) {
+        return "dashboard/dashboard";
     }
 }

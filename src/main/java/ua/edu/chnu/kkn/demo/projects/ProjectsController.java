@@ -1,4 +1,4 @@
-package edu.ataman.demo.projects;
+package ua.edu.chnu.kkn.demo.projects;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

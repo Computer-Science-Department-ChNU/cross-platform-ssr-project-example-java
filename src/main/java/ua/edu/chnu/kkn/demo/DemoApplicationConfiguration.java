@@ -1,4 +1,4 @@
-package edu.ataman.demo;
+package ua.edu.chnu.kkn.demo;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
