@@ -1,18 +1,30 @@
-package com.tamingthymeleaf.application.teammember;
+package ua.edu.chnu.kkn.demo.team.teammember;
 
+import io.github.wimdeblauwe.jpearl.InMemoryUniqueIdGenerator;
+import io.github.wimdeblauwe.jpearl.UniqueIdGenerator;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.test.context.ActiveProfiles;
+import ua.edu.chnu.kkn.demo.team.teammember.TeamMember;
+import ua.edu.chnu.kkn.demo.team.teammember.TeamMemberId;
+import ua.edu.chnu.kkn.demo.team.teammember.TeamMemberRepository;
+
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
+@ActiveProfiles("data-jpa-test")
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class TeamMemberRepositoryTest {
     private final TeamMemberRepository repository;
     private final JdbcTemplate jdbcTemplate;
@@ -21,7 +33,7 @@ class TeamMemberRepositoryTest {
 
     @Autowired
     TeamMemberRepositoryTest(TeamMemberRepository repository,
-                           JdbcTemplate jdbcTemplate) {
+                             JdbcTemplate jdbcTemplate) {
         this.repository = repository;
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -38,7 +50,16 @@ class TeamMemberRepositoryTest {
 
         entityManager.flush();
 
-        UUID idInDb = jdbcTemplate.queryForObject("SELECT id FROM teammember", UUID.class);
+        UUID idInDb = jdbcTemplate.queryForObject("SELECT id FROM tt_team_member", UUID.class);
         assertThat(idInDb).isEqualTo(id.getId());
+    }
+
+    @TestConfiguration
+    static class TestConfig {
+
+        @Bean
+        public UniqueIdGenerator<UUID> uniqueIdGenerator() {
+            return new InMemoryUniqueIdGenerator();
+        }
     }
 }

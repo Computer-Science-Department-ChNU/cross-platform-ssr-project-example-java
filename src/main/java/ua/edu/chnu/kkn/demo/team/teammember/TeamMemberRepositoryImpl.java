@@ -1,4 +1,4 @@
-package ua.edu.chnu.kkn.demo.teammember;
+package ua.edu.chnu.kkn.demo.team.teammember;
 
 import io.github.wimdeblauwe.jpearl.UniqueIdGenerator;
 
