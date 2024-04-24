@@ -18,6 +18,8 @@ import ua.edu.chnu.kkn.demo.team.teammember.TeamMember;
 import ua.edu.chnu.kkn.demo.team.teammember.TeamMemberId;
 import ua.edu.chnu.kkn.demo.team.teammember.TeamMemberRepository;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -46,12 +48,20 @@ class TeamMemberRepositoryTest {
     @Test
     void testSaveTeamMember() {
         TeamMemberId id = repository.nextId();
-        repository.save(new TeamMember(id));
-
+        repository.save(new TeamMember(id,
+                new TeamMemberName("Tommy", "Walton"),
+                Gender.MALE,
+                LocalDate.of(2001, Month.FEBRUARY, 17),
+                new Email("tommy.walton@gmail.com"),
+                new PhoneNumber("202 555 0192")));
         entityManager.flush();
-
-        UUID idInDb = jdbcTemplate.queryForObject("SELECT id FROM tt_team_member", UUID.class);
-        assertThat(idInDb).isEqualTo(id.getId());
+        assertThat(jdbcTemplate.queryForObject("SELECT id FROM tt_team_member", UUID.class)).isEqualTo(id.getId());
+        assertThat(jdbcTemplate.queryForObject("SELECT first_name FROM tt_team_member", String.class)).isEqualTo("Tommy");
+        assertThat(jdbcTemplate.queryForObject("SELECT last_name FROM tt_team_member", String.class)).isEqualTo("Walton");
+        assertThat(jdbcTemplate.queryForObject("SELECT gender FROM tt_team_member", Gender.class)).isEqualTo(Gender.MALE);
+        assertThat(jdbcTemplate.queryForObject("SELECT birthday FROM tt_team_member", LocalDate.class)).isEqualTo("2001-02-17");
+        assertThat(jdbcTemplate.queryForObject("SELECT email FROM tt_team_member", String.class)).isEqualTo("tommy.walton@gmail.com");
+        assertThat(jdbcTemplate.queryForObject("SELECT phone_number FROM tt_team_member", String.class)).isEqualTo("202 555 0192");
     }
 
     @TestConfiguration
