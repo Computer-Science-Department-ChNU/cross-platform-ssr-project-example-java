@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface TeamMemberService {
 
-    TeamMember createUser(CreateTeamMemberParameters parameters);
+    TeamMember createTeamMember(CreateTeamMemberParameters parameters);
 
-    Page<TeamMember> getUsers(Pageable pageable);
+    Page<TeamMember> getTeamMembers(Pageable pageable);
 }

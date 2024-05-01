@@ -26,7 +26,7 @@ public class DatabaseInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) {
         for (int i = 0; i < 20; i++) {
-            teamMemberService.createUser(newRandomTeamMemberParameters());
+            teamMemberService.createTeamMember(newRandomTeamMemberParameters());
         }
     }
 

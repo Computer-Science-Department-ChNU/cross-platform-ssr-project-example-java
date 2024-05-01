@@ -16,7 +16,7 @@ public class TeamMemberServiceImpl implements TeamMemberService {
     }
 
     @Override
-    public TeamMember createUser(CreateTeamMemberParameters parameters) {
+    public TeamMember createTeamMember(CreateTeamMemberParameters parameters) {
         TeamMemberId teamMemberId = teamMemberRepository.nextId();
         var teamMember = new TeamMember(
                 teamMemberId,
@@ -30,7 +30,7 @@ public class TeamMemberServiceImpl implements TeamMemberService {
     }
 
     @Override
-    public Page<TeamMember> getUsers(Pageable pageable) {
+    public Page<TeamMember> getTeamMembers(Pageable pageable) {
         return teamMemberRepository.findAll(pageable);
     }
 }

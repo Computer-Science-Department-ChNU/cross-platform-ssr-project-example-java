@@ -29,6 +29,10 @@ public class TeamMemberName {
         return lastName;
     }
 
+    public String getFullName() {
+        return String.format("%s %s", firstName, lastName);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
