@@ -22,19 +22,19 @@
                         <table class="min-w-full">
                             <thead>
                             <tr>
-                                <th th:replace="~{fragments/table :: header(#{teamMembers.name})}"></th>
-                                <th th:replace="~{fragments/table :: header(#{teamMembers.gender})}"></th>
-                                <th th:replace="~{fragments/table :: header(#{teamMembers.birthday})}"></th>
-                                <th th:replace="~{fragments/table :: header(#{teamMembers.email})}"></th>
+                                <th th:replace="~{fragments/table :: header(title=#{teamMembers.name})}"></th>
+                                <th th:replace="~{fragments/table :: header(title=#{teamMembers.gender},hideOnMobile=true)}"></th>
+                                <th th:replace="~{fragments/table :: header(title=#{teamMembers.birthday},hideOnMobile=true)}"></th>
+                                <th th:replace="~{fragments/table :: header(title=#{teamMembers.email},hideOnMobile=true)}"></th>
                                 <th th:replace="~{fragments/table :: header('')}"></th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr class="bg-white" th:each="member :${teamMembers}">
                                 <td th:replace="~{fragments/table :: data(contents=${member.teamMemberName.fullName}, primary=true)}"></td>
-                                <td th:replace="~{fragments/table :: data(contents=${member.gender})}"></td>
-                                <td th:replace="~{fragments/table :: data(contents=${member.birthday})}"></td>
-                                <td th:replace="~{fragments/table :: data(contents=${member.email.asString()})}"></td>
+                                <td th:replace="~{fragments/table :: data(contents=${member.gender},hideOnMobile=true)}"></td>
+                                <td th:replace="~{fragments/table :: data(contents=${member.birthday},hideOnMobile=true)}"></td>
+                                <td th:replace="~{fragments/table :: data(contents=${member.email.asString()},hideOnMobile=true)}"></td>
                                 <td th:replace="~{fragments/table :: dataWithLink(#{teamMembers.edit}, '#')}"></td>
                             </tr>
                             </tbody>
