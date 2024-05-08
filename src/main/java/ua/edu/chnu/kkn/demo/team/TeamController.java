@@ -7,12 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import ua.edu.chnu.kkn.demo.team.teammember.Gender;
-import ua.edu.chnu.kkn.demo.team.teammember.TeamMemberService;
+import org.springframework.web.bind.annotation.*;
+import ua.edu.chnu.kkn.demo.team.teammember.*;
 
 import java.util.List;
 
@@ -35,14 +31,14 @@ public class TeamController {
     }
 
     @GetMapping("/create")
-    public String createUserForm(Model model) {
+    public String createTeamMemberForm(Model model) {
         model.addAttribute("teamMember", new CreateTeamMemberFormData());
         model.addAttribute("genders", List.of(Gender.MALE, Gender.FEMALE, Gender.OTHER));
         return "team/edit";
     }
 
     @PostMapping("/create")
-    public String createUser(@Validated(TeamMemberValidationGroupSequence.class)
+    public String createTeamMember(@Validated(TeamMemberValidationGroupSequence.class)
                                  @ModelAttribute("teamMember") CreateTeamMemberFormData formData,
                                BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
@@ -51,5 +47,16 @@ public class TeamController {
         }
         teamMemberService.createTeamMember(formData.toParameters());
         return "redirect:/team";
+    }
+
+    @GetMapping("/{id}")
+    public String editTeamMemberForm(@PathVariable("id") TeamMemberId teamMemberId, Model model) {
+        TeamMember teamMember = teamMemberService
+                .getTeamMember(teamMemberId)
+                .orElseThrow(() -> new TeamMemberNotFoundException(teamMemberId));
+        model.addAttribute("teamMember", EditTeamMemberFormData.fromTeamMember(teamMember));
+        model.addAttribute("genders", List.of(Gender.MALE, Gender.FEMALE, Gender.OTHER));
+        model.addAttribute("editMode", EditMode.UPDATE);
+        return "team/edit";
     }
 }

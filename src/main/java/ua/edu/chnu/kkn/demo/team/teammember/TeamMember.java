@@ -2,6 +2,7 @@ package ua.edu.chnu.kkn.demo.team.teammember;
 
 import io.github.wimdeblauwe.jpearl.AbstractEntity;
 
+import io.github.wimdeblauwe.jpearl.AbstractVersionedEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "tt_team_member")
-public class TeamMember extends AbstractEntity<TeamMemberId> {
+public class TeamMember extends AbstractVersionedEntity<TeamMemberId> {
 
     @NotNull
     private TeamMemberName teamMemberName;
@@ -68,5 +69,25 @@ public class TeamMember extends AbstractEntity<TeamMemberId> {
 
     public PhoneNumber getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public void setTeamMemberName(TeamMemberName teamMemberName) {
+        this.teamMemberName = teamMemberName;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
+    public void setEmail(Email email) {
+        this.email = email;
+    }
+
+    public void setPhoneNumber(PhoneNumber phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

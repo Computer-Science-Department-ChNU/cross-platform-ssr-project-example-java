@@ -10,10 +10,7 @@
 </head>
 <body>
 <div layout:fragment="page-content">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-        <h1 class="text-2xl font-semibold text-gray-900"
-            th:text="#{teamMembers.title}">Users</h1>
-    </div>
+    <div th:replace="fragments/titles :: title-with-button(#{teamMembers.title}, 'team-member-add', #{teamMember.add}, @{/team/create})"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <div class="py-4">
             <div class="flex flex-col">
@@ -35,7 +32,7 @@
                                 <td th:replace="~{fragments/table :: data(contents=${member.gender},hideOnMobile=true)}"></td>
                                 <td th:replace="~{fragments/table :: data(contents=${member.birthday},hideOnMobile=true)}"></td>
                                 <td th:replace="~{fragments/table :: data(contents=${member.email.asString()},hideOnMobile=true)}"></td>
-                                <td th:replace="~{fragments/table :: dataWithLink(#{teamMembers.edit}, '#')}"></td>
+                                <td th:replace="~{fragments/table :: dataWithLink(#{teamMembers.edit}, @{'/team/'+ ${member.id.asString()}})}"></td>
                             </tr>
                             </tbody>
                         </table>
