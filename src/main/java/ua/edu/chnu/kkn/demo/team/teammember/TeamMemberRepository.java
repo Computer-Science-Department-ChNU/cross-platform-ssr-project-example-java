@@ -9,4 +9,5 @@ public interface TeamMemberRepository extends CrudRepository<TeamMember, TeamMem
         PagingAndSortingRepository<TeamMember, TeamMemberId>,
         TeamMemberRepositoryCustom {
 
+    boolean existsByEmail(Email email);
 }

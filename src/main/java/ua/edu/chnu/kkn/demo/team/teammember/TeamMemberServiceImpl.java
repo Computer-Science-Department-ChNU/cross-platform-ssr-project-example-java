@@ -33,4 +33,9 @@ public class TeamMemberServiceImpl implements TeamMemberService {
     public Page<TeamMember> getTeamMembers(Pageable pageable) {
         return teamMemberRepository.findAll(pageable);
     }
+
+    @Override
+    public boolean teamMemberWithEmailExists(Email email) {
+        return teamMemberRepository.existsByEmail(email);
+    }
 }

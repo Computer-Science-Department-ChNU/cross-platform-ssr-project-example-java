@@ -8,4 +8,6 @@ public interface TeamMemberService {
     TeamMember createTeamMember(CreateTeamMemberParameters parameters);
 
     Page<TeamMember> getTeamMembers(Pageable pageable);
+
+    boolean teamMemberWithEmailExists(Email email);
 }
