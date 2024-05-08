@@ -1,6 +1,5 @@
 package ua.edu.chnu.kkn.demo.team;
 
-import jakarta.validation.Valid;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
@@ -38,7 +37,7 @@ public class TeamController {
     }
 
     @PostMapping("/create")
-    public String createTeamMember(@Validated(TeamMemberValidationGroupSequence.class)
+    public String createTeamMember(@Validated(CreateTeamMemberValidationGroupSequence.class)
                                  @ModelAttribute("teamMember") CreateTeamMemberFormData formData,
                                BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
@@ -58,5 +57,19 @@ public class TeamController {
         model.addAttribute("genders", List.of(Gender.MALE, Gender.FEMALE, Gender.OTHER));
         model.addAttribute("editMode", EditMode.UPDATE);
         return "team/edit";
+    }
+
+    @PostMapping("/{id}")
+    public String editTeamMember(@PathVariable("id") TeamMemberId teamMemberId,
+                                 @Validated(EditTeamMemberValidationGroupSequence.class)
+                                   @ModelAttribute("teamMember") EditTeamMemberFormData formData,
+                                   BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("genders", List.of(Gender.MALE, Gender.FEMALE, Gender.OTHER));
+            model.addAttribute("editMode", EditMode.UPDATE);
+            return "team/edit";
+        }
+        teamMemberService.editTeamMember(teamMemberId, formData.toParameters());
+        return "redirect:/team";
     }
 }
