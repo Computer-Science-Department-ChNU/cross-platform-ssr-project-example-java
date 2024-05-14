@@ -16,4 +16,6 @@ public interface TeamMemberService {
     boolean teamMemberWithEmailExists(Email email);
 
     TeamMember editTeamMember(TeamMemberId teamMemberId, EditTeamMemberParameters teamMemberParameters);
+
+    void deleteTeamMember(TeamMemberId teamMemberId);
 }

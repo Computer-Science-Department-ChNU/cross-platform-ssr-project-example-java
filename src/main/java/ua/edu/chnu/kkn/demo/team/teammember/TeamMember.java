@@ -1,7 +1,5 @@
 package ua.edu.chnu.kkn.demo.team.teammember;
 
-import io.github.wimdeblauwe.jpearl.AbstractEntity;
-
 import io.github.wimdeblauwe.jpearl.AbstractVersionedEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

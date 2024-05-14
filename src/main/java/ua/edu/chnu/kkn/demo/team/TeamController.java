@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ua.edu.chnu.kkn.demo.team.teammember.*;
 
 import java.util.List;
@@ -70,6 +71,17 @@ public class TeamController {
             return "team/edit";
         }
         teamMemberService.editTeamMember(teamMemberId, formData.toParameters());
+        return "redirect:/team";
+    }
+
+    @PostMapping("/{id}/delete")
+    public String deleteTeamMember(@PathVariable("id") TeamMemberId teamMemberId,
+                                   RedirectAttributes redirectAttributes) {
+        TeamMember member = teamMemberService.getTeamMember(teamMemberId)
+                .orElseThrow(() -> new TeamMemberNotFoundException(teamMemberId));
+        teamMemberService.deleteTeamMember(teamMemberId);
+        redirectAttributes.addFlashAttribute("deletedTeamMemberName",
+                member.getTeamMemberName().getFullName());
         return "redirect:/team";
     }
 }

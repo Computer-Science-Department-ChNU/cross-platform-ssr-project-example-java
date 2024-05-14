@@ -58,4 +58,9 @@ public class TeamMemberServiceImpl implements TeamMemberService {
         teamMemberParameters.update(teamMember);
         return teamMember;
     }
+
+    @Override
+    public void deleteTeamMember(TeamMemberId teamMemberId) {
+        teamMemberRepository.deleteById(teamMemberId);
+    }
 }
